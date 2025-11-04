@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client'
 
-import './index.css'
+// import './index.css' // Personally, I prefer to disable all styles while I'm doing functionalities
 import {RouterProvider} from "react-router/dom";
 import router from './router.js'
 
