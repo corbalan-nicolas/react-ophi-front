@@ -17,7 +17,7 @@
 * */
 
 // TODO: Mover este "prefix" a una variable de entorno
-const prefix = 'http://localhost:3000/api' // Ustedes pongan el puerto que tengan en sus API's
+const prefix = 'http://localhost:5000/api' // Ustedes pongan el puerto que tengan en sus API's
 const endpoint = prefix + '/users'
 
 /**
