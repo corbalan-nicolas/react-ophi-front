@@ -6,6 +6,7 @@ import LoginView from "./views/LoginView";
 import MainLayout from "./layouts/MainLayout.jsx";
 import ProductView from "./views/ProductView.jsx";
 import NotFound from "./views/NotFound.jsx";
+import RegisterView from "./views/RegisterView.jsx"
 
 const router = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
             {
                 path: '/producto/:name',
                 Component: ProductView,
+            },
+            {
+                path: '/registrarse',
+                Component: RegisterView,
             },
             {
                 path: '/not-found',

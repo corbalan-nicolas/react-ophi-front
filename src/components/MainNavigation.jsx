@@ -1,4 +1,4 @@
-import {NavLink} from "react-router";
+import { NavLink } from "react-router";
 
 const MainNavigation = () => {
     return (
@@ -7,6 +7,9 @@ const MainNavigation = () => {
                 <ul>
                     <li>
                         <NavLink to="/">Inicio</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/registrarse">Registrarse</NavLink>
                     </li>
                     <li>
                         <NavLink to="/iniciar-sesion">Iniciar sesión</NavLink>

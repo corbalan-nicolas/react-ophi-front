@@ -1,4 +1,7 @@
+import ManageFetchClass from "../../classes/ManageFetch"
+const ManageFetch = new ManageFetchClass()
 const apiUrl = import.meta.env.VITE_API_URL
+
 /*
 * ¿CÓMO HACEMOS PETICIONES A LA API?
 * Esto no es tan complejo como Laravel con Sanctum por suerte,
@@ -30,4 +33,18 @@ export async function getAllUsers() {
     const result = await response.json()
 
     return result.data
+}
+
+export async function registerUser(userData) {
+    const option = ManageFetch.configureFetch('POST');
+    option.body = JSON.stringify(userData);
+
+    const response = await fetch(endpoint, option)
+    const result = await response.json()
+
+    if (!response.ok) {
+        throw new Error(result.msg ?? 'Error al registrar')
+    }
+
+    return result;
 }
