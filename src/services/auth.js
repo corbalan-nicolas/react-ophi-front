@@ -1,3 +1,4 @@
+const apiUrl = import.meta.env.VITE_API_URL
 /*
 * ¿CÓMO HACEMOS PETICIONES A LA API?
 * Esto no es tan complejo como Laravel con Sanctum por suerte,
@@ -17,7 +18,7 @@
 * */
 
 // TODO: Mover este "prefix" a una variable de entorno
-const prefix = 'http://localhost:5000/api' // Ustedes pongan el puerto que tengan en sus API's
+const prefix = apiUrl
 const endpoint = prefix + '/users'
 
 /**
