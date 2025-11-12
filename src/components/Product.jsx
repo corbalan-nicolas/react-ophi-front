@@ -2,20 +2,53 @@ import React, { useEffect, useState } from "react";
 import Alert from "./Alert";
 
 const Product = ({ product }) => {
+    
 
+    const hardcodedUser = {
+        allergy: {
+            _id: "6913c4c65fc1deaee327a3b5",
+            name: "Huevo",
+            normalizedName: "huevo",
+            description: "Alergia a las proteínas presentes en la clara o yema del huevo.",
+            type: 1,
+            normalizedType: "intolerancia",
+            symptoms: ["urticaria", "tos", "vómitos"],
+            normalizedSymptoms: ["urticaria", "tos", "vómitos"],
+            severity: 3,
+            normalizedSeverity: "severo",
+            restrictedIngredients: ["huevo", "mayonesa", "pasteles con huevo"],
+            normalizedRestrictedIngredients: ["huevo", "mayonesa", "pastelesconhuevo"],
+            alternativesIngredients: ["semillas de chía", "banana madura"],
+            normalizedAlternativesIngredients: ["semillasdechia", "bananamadura"],
+            __v: 0
+        } 
+    }
     const [nutritionalDanger, setNutritionalDanger] = useState(false);
+    const [safe, setSafe] = useState(true);
 
     useEffect(() => {
         if (product.nutritionalInfo.calories > 400 || product.nutritionalInfo.fat > 17 || product.nutritionalInfo.sugar > 10) {
             setNutritionalDanger(true);
         }
+
+        function checkCompatibility() {
+            product.normalizedIngredients.forEach(ingredient => {
+                hardcodedUser.allergy.normalizedRestrictedIngredients.forEach(uIngredient => {
+                    if(ingredient === uIngredient) {
+                        setSafe(false);
+                    }
+                })
+                
+            });
+        }
+        checkCompatibility();
     });
 
     return (
         <>
             <h2>{product.name}</h2>
             <span>Resultado</span>
-            <Alert safe={false}></Alert>
+            <Alert safe={safe}></Alert>
 
             <div>
                 <h3>Ingredientes</h3>

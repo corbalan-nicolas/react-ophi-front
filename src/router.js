@@ -7,6 +7,8 @@ import MainLayout from "./layouts/MainLayout.jsx";
 import ProductView from "./views/ProductView.jsx";
 import NotFound from "./views/NotFound.jsx";
 import RegisterView from "./views/RegisterView.jsx"
+import UserProfileView from "./views/UserProfileView.jsx";
+import EditProfileView from "./views/EditProfileView.jsx";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
             {
                 path: '/not-found',
                 Component: NotFound,
+            },
+            {
+                path: '/perfil',
+                Component: UserProfileView,
+            },
+            {
+                path: '/editar-perfil',
+                Component: EditProfileView,
             },
         ]
     }

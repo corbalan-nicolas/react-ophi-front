@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import Product from "../components/Product";
-import { find_by_name } from "../services/Product";
+import { findByName } from "../services/Product";
 
 
 const ProductView = () => {
@@ -12,22 +12,21 @@ const ProductView = () => {
     const [products, setProducts] = useState();
     console.log(endPoint)
     useEffect(() => {
-        async function fetchData() {
+        async function getFoodByName() {
             try {
-                const result = await find_by_name(params.name)
-                if(result) {
-                    setProducts(result);
-                } else {
+                const result = await findByName(params.name);
+                console.log(result);
+                if(result.status === 404) {
                     navigate('/not-found')
+                } else {
+                    setProducts(result);
                 }
-                
-                
             } catch (error) {
                 console.log('Error al buscar producto por nombre', error);
             }
         }
 
-        fetchData();
+        getFoodByName();
     }, [params.name])
     
     return (

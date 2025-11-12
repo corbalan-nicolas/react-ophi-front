@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { NavLink } from "react-router";
+import { AuthContext } from "../context/AuthContext";
 
 const MainNavigation = () => {
+    const {user} = useContext(AuthContext);
+
     return (
         <>
             <nav>
@@ -14,6 +18,13 @@ const MainNavigation = () => {
                     <li>
                         <NavLink to="/iniciar-sesion">Iniciar sesión</NavLink>
                     </li>
+                    { user.name ?
+                        <li>
+                            <NavLink to="/perfil">{user.name}</NavLink>
+                        </li>
+                    :
+                        ''
+                    }
                 </ul>
             </nav>
         </>
