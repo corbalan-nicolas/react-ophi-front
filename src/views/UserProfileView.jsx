@@ -7,7 +7,7 @@ const UserProfileView = () => {
 
     return (
         <>
-            <h1>{user.name}</h1>
+            <h1 className='text-6xl mb-6 text-center'>{user.name}</h1>
             <div>
                 <h2>Mi alergia</h2>
                 <span>{user.allergy.name}</span>

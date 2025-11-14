@@ -31,7 +31,6 @@ const ProductView = () => {
     
     return (
         <>
-            <span>TESt</span>
             { products ? 
                 <Product product={products}></Product>
             :
