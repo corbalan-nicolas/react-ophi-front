@@ -17,7 +17,7 @@ const ProductView = () => {
                 const result = await findByName(params.name);
                 console.log(result);
                 if(result.status === 404) {
-                    navigate('/not-found')
+                    setProducts(null)
                 } else {
                     setProducts(result);
                 }
@@ -34,7 +34,7 @@ const ProductView = () => {
             { products ? 
                 <Product product={products}></Product>
             :
-                ''
+                <h2>Producto no encontrado</h2>
             }
         </>
     );

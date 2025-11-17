@@ -4,11 +4,21 @@ import ProductCardList from "./ProductCardList.jsx";
 
 
 const Products = ({ products }) => {
+  console.log(products);
   return (
     <>
-      <ProductCardList>
-        {products.map((p, index) => <ProductCard product={p} key={index} />)}
-      </ProductCardList>
+      {products !== 404 ? 
+          <ProductCardList>
+            {!Array.isArray(products)  ? 
+              <ProductCard product={products}></ProductCard>
+            :
+              products.map((p, index) => <ProductCard product={p} key={index} />) 
+            }
+          </ProductCardList>
+        :
+          <h2>No encontramos resultados!</h2>
+      }
+      
     </>
   );
 };

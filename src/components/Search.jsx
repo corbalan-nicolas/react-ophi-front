@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
 import SearchIcon from "./icons/SearchIcon.jsx";
+import { findByName } from "../services/Product.js";
+import { useEffect } from "react";
 
-const Search = () => {
-    const navigate = useNavigate();
+const Search = ({searchResult}) => {
     const [foodSearch, setFoodSearch] = useState('');
 
     function normalizeFoodSearch(value) {
@@ -15,12 +15,36 @@ const Search = () => {
 
     async function handleSubmit(e) {
         e.preventDefault();
+       
         const normalizedValue = normalizeFoodSearch(foodSearch);
         if (!normalizedValue) {
             return;
         }
-        navigate(`/producto/${encodeURIComponent(normalizedValue)}`);
+        const result = await getFoodByName(normalizedValue);
+
+
+        searchResult(result);
     }
+
+    async function getFoodByName(normalizedValue) {
+        try {
+            const result = await findByName(normalizedValue);
+            if(result.status === 404) {
+                return 404;
+            } else {
+                return result;
+            }
+        } catch (error) {
+            console.log('Error al buscar producto por nombre', error);
+        }
+    }
+
+    useEffect(() => {
+        
+        if (foodSearch === '') {
+            searchResult(null);
+        }
+    }, [foodSearch])
 
     return (
         <>
