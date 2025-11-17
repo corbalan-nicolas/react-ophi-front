@@ -20,7 +20,7 @@ export async function findByName(name) {
 }
 
 export async function getAllSafeFood(allergen) {
-    const endPoint = apiUrl + `/food/ingredient/${allergen}`;
+    const endPoint = apiUrl + `/food/allergen/${allergen}`;
     const option = ManageFetch.configureFetch('get');
 
     const response = await fetch(endPoint, option);
