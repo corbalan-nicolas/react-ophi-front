@@ -39,11 +39,12 @@ const HomeView = () => {
 
     return (
         <>
-            <h1>Inicio</h1>
-            <h2>Buscar productos</h2>
+            <h1 className='sr-only'>Inicio</h1>
+            <h2 className='text-6xl mb-6 text-center'>Buscar productos</h2>
             <Search></Search>
+
             {/* Solo para probar el servicio y la petición, esto lo voy a eliminar después lógicamente */}
-            <h2>Productos recomendados para vos</h2>
+            <h2 className='text-4xl mb-3 mt-6'>Productos recomendados para vos</h2>
             <Products products={food}></Products>
             <button onClick={handleClick}>Traer a todos los usuarios</button>
         </>

@@ -1,7 +1,7 @@
 const NotFound = () => {
     return (
         <div>
-            <h2>Lo sentimos! No encontramos el producto que buscabas.</h2>
+            <h1 className='text-6xl mb-6'>Lo sentimos! No encontramos el producto que buscabas.</h1>
         </div>
     )
 }
