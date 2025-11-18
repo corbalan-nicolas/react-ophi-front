@@ -9,6 +9,10 @@ etc.
 global styles and all that stuff...
 */
 
+:root {
+    color-scheme: dark;
+}
+
 @theme {
     --animate-highlight: highlight 500ms ease 3;
 
