@@ -1,12 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { registerUser } from "../services/auth.js"
+import { getAllIntolerances } from "../services/Intolerances.js"
 import EyeIcon from "../components/icons/EyeIcon.jsx";
 import EyeClosedIcon from "../components/icons/EyeClosedIcon.jsx";
 
 const RegisterView = () => {
     const navigate = useNavigate()
     const [passwordType, setPasswordType] = useState('password')
+    const [intolerances, setIntolerances] = useState([])
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -18,6 +20,22 @@ const RegisterView = () => {
         error: null,
         success: null
     })
+
+    useEffect(() => {
+        async function getIntolerances() {
+            try {
+                const result = await getAllIntolerances();
+                if(result) {
+                    setIntolerances(result);
+                }
+            } catch (error) {
+                console.error('Error al obtener las intolerancias', error);
+                setStatus(prev => ({ ...prev, error: 'Error al cargar las intolerancias' }));
+            }
+        }
+        getIntolerances();
+    }, [])
+
     const handleChange = (e) => {
         const { name, value } = e.target
         setFormData(prev => ({
@@ -117,15 +135,21 @@ const RegisterView = () => {
 
                         <div className='mb-4'>
                             <label className='mb-1 inline-block linear-to-r' htmlFor="allergy">Alergia</label>
-                            <input
+                            <select
                                 id="allergy"
                                 className='block w-full border-white/30 border-1 bg-black/20 focus-visible:bg-black/30 text-white/80 rounded-lg py-2 px-3'
                                 name="allergy"
-                                type="text"
                                 value={formData.allergy}
                                 onChange={handleChange}
                                 disabled={status.loading}
-                            />
+                            >
+                                <option value="">Seleccione una intolerancia</option>
+                                {intolerances.map((intolerance) => (
+                                    <option key={intolerance._id} value={intolerance._id}>
+                                        {intolerance.name}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
 
                         <button
