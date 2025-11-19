@@ -6,8 +6,8 @@ import { useEffect } from "react";
 import { getAllIntolerances } from "../services/Intolerances";
 
 const EditProfileView = () => {
-    const {user} = useContext(AuthContext);
-    const hardcodedId = '6913c356eaf97485de5f339b';
+    const {user, login} = useContext(AuthContext);
+    console.log(user, 'AOUISFNAOSIKn')
     const [inputValue, setInputValue] = useState('');
     const [intolerances, setIntolerances] = useState([]);
     const navigate = useNavigate();
@@ -33,9 +33,12 @@ const EditProfileView = () => {
 
 
     async function handleSubmit(e) {
+        console.log(inputValue, 'INPUT');
         e.preventDefault();
         try {
-            await updateUserAllergy(hardcodedId, {allergy: inputValue});
+            const result = await updateUserAllergy(user.id, {allergy: inputValue});
+            console.log(result);
+            login(result);
             navigate('/perfil');
         } catch (error) {
             console.error('[VIEW] error al actualizar la alergia del usuario', error);
@@ -43,10 +46,6 @@ const EditProfileView = () => {
         
     }
 
-    function handleChange(e) {
-        setInputValue(e);
-        
-    }
 
     return (
         <>
@@ -59,6 +58,7 @@ const EditProfileView = () => {
                     value={inputValue} 
                     onChange={(e) => setInputValue(e.target.value)}
                 >
+                    <option value="">Selecciona una alergia...</option>
                     {intolerances.map((intolerance, index) => <option key={index}  value={intolerance._id}>{intolerance.name}</option>)}
                 </select>
 

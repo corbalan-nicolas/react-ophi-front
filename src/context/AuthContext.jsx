@@ -1,35 +1,55 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode"
+
 const AuthContext = createContext();
 
-const AuthProvider = ({children}) => {
-    const [user, setUser] = useState(
-        {   
-            name: 'userTest',
-            allergy: {
-                _id: "6913c4c65fc1deaee327a3b5",
-                name: "Huevo",
-                normalizedName: "huevo",
-                description: "Alergia a las proteínas presentes en la clara o yema del huevo.",
-                type: 1,
-                normalizedType: "intolerancia",
-                symptoms: ["urticaria", "tos", "vómitos"],
-                normalizedSymptoms: ["urticaria", "tos", "vómitos"],
-                severity: 3,
-                normalizedSeverity: "severo",
-                restrictedIngredients: ["huevo", "mayonesa", "pasteles con huevo"],
-                normalizedRestrictedIngredients: ["huevo", "mayonesa", "pastelesconhuevo"],
-                alternativesIngredients: ["semillas de chía", "banana madura"],
-                normalizedAlternativesIngredients: ["semillasdechia", "bananamadura"],
-                __v: 0
-            } 
+const STORAGE_TOKEN_KEY = 'ophi_token';
+
+const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
+    const [token, setToken] = useState(localStorage.getItem('ophi_token'));
+
+    // localStorage
+    useEffect(() => {
+        if (token) {
+            
+            try {
+                const tokenDecoded = jwtDecode(token);
+                setUser(tokenDecoded);
+            } catch (error) {
+                console.error('Error al parsear usuario guardado', error);
+                setUser(null);
+            }
         }
-    );
-    
+    }, [token]);
+
+    const login = (jwtToken) => {
+        localStorage.setItem(STORAGE_TOKEN_KEY, jwtToken);
+        setToken(jwtToken);
+    };
+
+    const logout = () => {
+        setUser(null);
+        setToken(null);
+
+        localStorage.removeItem(STORAGE_TOKEN_KEY);
+    };
+
+    const value = {
+        user,
+        token,
+        isAuthenticated: !!user,
+        login,
+        logout,
+    };
+
     return (
-        <AuthContext.Provider value={{user}}>
+        <AuthContext.Provider value={value}>
             { children }
         </AuthContext.Provider>
     )
-}
+};
 
-export {AuthProvider, AuthContext};
+const useAuth = () => useContext(AuthContext);
+
+export { AuthProvider, AuthContext, useAuth };

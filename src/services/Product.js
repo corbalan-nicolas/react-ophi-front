@@ -13,7 +13,7 @@ export async function findByName(name) {
     const result = await response.json();
 
     if(!response.ok) {
-        return response;
+       throw new Error(result.msg ?? 'Error al buscar alimentos')
     }
 
     return result.data;
@@ -26,7 +26,7 @@ export async function getAllSafeFood(allergen) {
     const response = await fetch(endPoint, option);
     const result = await response.json();
 
-    console.log(result);
+
     if(!response.ok) {
         throw new Error(result.msg ?? 'Error al buscar alimentos')
     }

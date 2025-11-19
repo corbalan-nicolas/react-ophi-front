@@ -5,6 +5,7 @@ import { useState } from "react";
 import Products from "../components/Products.jsx";
 import { getAllSafeFood } from "../services/Product.js";
 import { AuthContext } from "../context/AuthContext.jsx";
+import { getUserAllergy } from "../services/User.js";
 
 
 
@@ -13,7 +14,8 @@ const HomeView = () => {
     const [food, setFood] = useState([]);
 
     const {user} = useContext(AuthContext);
-    console.log(user);
+    const [userAllergy, setUserAllergy] = useState(null);
+
 
     const [nutritionalDanger, setNutritionalDanger] = useState(false);
     const [result, setResult] = useState('');
@@ -26,7 +28,7 @@ const HomeView = () => {
 
      async function getFood() {
             try {
-                const result = await getAllSafeFood(user.allergy.name);
+                const result = await getAllSafeFood(userAllergy.name);
                 if(result) {
                     setFood(result);
                 }
@@ -34,12 +36,29 @@ const HomeView = () => {
                 console.error('No se pudo obtener los alimentos SEGUROS', error);
             }
     }
+
+
     useEffect(() => {
-           
+        async function getAllergy () {
+            try {
+                const result = await getUserAllergy(user.allergy);
+            
+                if(result) {
+                    setUserAllergy(result);
+                }
+            } catch(error) {
+                console.error('Error al obtener la alergia del usuario', error);
+            }
+        }
+        getAllergy();
+    }, []);
+
+
+    useEffect(() => { 
+        if(userAllergy !== null) {
             getFood();
-        },
-        []
-    )
+        }
+    }, [userAllergy])
 
     function getResult(result) {
         if(result !== null) {

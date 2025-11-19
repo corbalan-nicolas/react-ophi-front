@@ -7,7 +7,7 @@ const Products = ({ products }) => {
   console.log(products);
   return (
     <>
-      {products !== 404 ? 
+      {(products !== undefined && products !== 404) ? 
           <ProductCardList>
             {!Array.isArray(products)  ? 
               <ProductCard product={products}></ProductCard>

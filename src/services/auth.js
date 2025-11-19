@@ -22,7 +22,11 @@ const apiUrl = import.meta.env.VITE_API_URL
 
 // TODO: Mover este "prefix" a una variable de entorno
 const prefix = apiUrl
+//Puede ser que no haya en la api /api/users???
 const endpoint = prefix + '/users'
+
+const loginEndpoint = `${endpoint}/auth`;
+const logoutEndpoint = `${endpoint}/logout`;
 
 /**
  * Obtiene todos los usuarios de la DB
@@ -47,4 +51,38 @@ export async function registerUser(userData) {
     }
 
     return result;
+}
+
+/**
+ * Login
+ */
+export async function loginUser(credentials) {
+    const option = ManageFetch.configureFetch('POST');
+    option.body = JSON.stringify(credentials);
+
+    const response = await fetch(loginEndpoint, option);
+    const result = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+        throw new Error(result.msg ?? 'Error al iniciar sesión');
+    }
+
+    // asumo que el back devuelve { user, token } o { data: { user, token } }
+    return result.data ?? result;
+}
+
+/**
+ * Logout
+ */
+export async function logoutUser() {
+    const option = ManageFetch.configureFetch('POST');
+
+    const response = await fetch(logoutEndpoint, option);
+    const result = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+        throw new Error(result.msg ?? 'Error al cerrar sesión');
+    }
+
+    return result.data ?? result;
 }

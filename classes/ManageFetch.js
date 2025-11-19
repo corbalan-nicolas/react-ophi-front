@@ -6,11 +6,17 @@ class ManageFetch {
             headers: {
                 'Content-type': 'application/json',
             }
+        };
+
+        // token en localStorage?
+        const token = localStorage.getItem('ophi_token');
+        if (token) {
+            option.headers['Authorization'] = `Bearer ${token}`;
         }
+
         return option;
     }
 
 }
 
-
-export default ManageFetch
+export default ManageFetch;

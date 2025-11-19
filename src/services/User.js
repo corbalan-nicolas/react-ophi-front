@@ -9,4 +9,26 @@ export async function updateUserAllergy(id, allergy) {
     option.body = JSON.stringify(allergy);
 
     const response = await fetch(endPoint, option);
+    const result = await response.json();
+
+
+
+    if(!response.ok) {
+        throw new Error(result.msg ?? 'Error al obtener alergia');
+    }
+
+    return result.data
+}
+
+export async function getUserAllergy(id) {
+    const endPoint = apiUrl + `/intolerances/${id}`;
+    const option =  ManageFetch.configureFetch('get');
+    const response = await fetch(endPoint, option);
+    const result = await response.json();
+
+    if(!response.ok) {
+        throw new Error(result.msg ?? 'Error al obtener alergia');
+    }
+
+    return result.data;
 }

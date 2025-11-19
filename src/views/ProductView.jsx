@@ -17,7 +17,7 @@ const ProductView = () => {
                 const result = await findByName(params.name);
                 console.log(result);
                 if(result.status === 404) {
-                    setProducts(null)
+                    setProducts(null);
                 } else {
                     setProducts(result);
                 }
