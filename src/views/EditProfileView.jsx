@@ -49,20 +49,30 @@ const EditProfileView = () => {
 
     return (
         <>
-            <h1>Editar</h1>
+            <h1 className='text-6xl mb-6 text-center'>Editar alergia</h1>
             <form action="#" method="#" onSubmit={handleSubmit}>
-                <label htmlFor="newAllergy">Actualizar alergia</label>
-                <select 
-                    id="newAllergy" 
-                    name="newAllergy" 
-                    value={inputValue} 
-                    onChange={(e) => setInputValue(e.target.value)}
-                >
-                    <option value="">Selecciona una alergia...</option>
-                    {intolerances.map((intolerance, index) => <option key={index}  value={intolerance._id}>{intolerance.name}</option>)}
-                </select>
+                <div className="mb-4">
+                    <label
+                        className='mb-1 inline-block linear-to-r'
+                        htmlFor="newAllergy"
+                    >Actualizar alergia</label>
 
-                <button type="submit">Actualizar</button>
+                    <select
+                        id="newAllergy"
+                        name="newAllergy"
+                        className='block w-full border-white/30 border-1 bg-black/20 focus-visible:bg-black/30 text-white/80 rounded-lg py-2 px-3'
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                    >
+                        <option value="">Selecciona una alergia...</option>
+                        {intolerances.map((intolerance, index) => <option key={index}  value={intolerance._id}>{intolerance.name}</option>)}
+                    </select>
+                </div>
+
+                <button
+                    className="py-2 px-4 glass glass--events w-full col-span-full"
+                    type="submit"
+                >Actualizar</button>
             </form>
 
         </>

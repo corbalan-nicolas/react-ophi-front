@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router'
+import React, { useState, useEffect } from 'react'
+import {Link, useNavigate} from 'react-router'
 import { registerUser } from "../services/auth.js"
 import { getAllIntolerances } from "../services/Intolerances.js"
 import EyeIcon from "../components/icons/EyeIcon.jsx";
 import EyeClosedIcon from "../components/icons/EyeClosedIcon.jsx";
+import SuccessIcon from "../components/icons/SuccessIcon.jsx";
+import DangerIcon from "../components/icons/DangerIcon.jsx";
 
 const RegisterView = () => {
     const navigate = useNavigate()
@@ -71,16 +73,29 @@ const RegisterView = () => {
     return (
         <>
             <h1 className='text-6xl mb-6'>Registrarse</h1>
+
+            <p className="text-sm mb-4 text-black/70">
+                ¿Ya tenés una cuenta?{" "}
+                <Link
+                    to="/iniciar-sesion"
+                    className="underline hover:text-blue-800 transition"
+                >
+                    Iniciá sesión
+                </Link>
+            </p>
+
             <div className='md:grid grid-cols-2 gap-4'>
                 <div>
                     {status.error && (
-                        <div style={{ color: 'red' }}>
+                        <div className='border rounded-lg p-4 glass flex justify-center gap-2 animate-highlight glass--danger mb-4'>
+                             <DangerIcon />
                             <p>{status.error}</p>
                         </div>
                     )}
 
                     {status.success && (
-                        <div style={{ color: 'green' }}>
+                        <div className='border rounded-lg p-4 glass flex justify-center gap-2 animate-highlight glass--success mb-4'>
+                            <SuccessIcon />
                             <p>{status.success}</p>
                         </div>
                     )}

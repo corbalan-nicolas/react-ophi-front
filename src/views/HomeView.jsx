@@ -78,7 +78,7 @@ const HomeView = () => {
             {/* Solo para probar el servicio y la petición, esto lo voy a eliminar después lógicamente */}
             <h2 className='text-4xl mb-3 mt-6'>Productos recomendados para vos</h2>
             <Products products={food}></Products>
-            <button onClick={handleClick}>Traer a todos los usuarios</button>
+            {/*<button onClick={handleClick}>Traer a todos los usuarios</button>*/}
         </>
     )
 }

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { NavLink } from "react-router";
 import { getUserAllergy } from "../services/User";
+import PencilIcon from "../components/icons/PencilIcon.jsx";
 
 const UserProfileView = () => {
     const {user} = useContext(AuthContext);
@@ -29,11 +30,16 @@ const UserProfileView = () => {
     return (
         <>
             <h1 className='text-6xl mb-6 text-center'>{user.name}</h1>
-            <div>
-                <h2>Mi alergia</h2>
-                <span className="block">{userAllergy.name}</span>
-                <NavLink to="/editar-perfil">Editar alergia</NavLink>
+            <div className='flex items-end gap-4'>
+                <h2 className='text-3xl'>Mi alergia</h2>
+                <NavLink
+                    className=' inline-block text-black/60 p-2 glass glass--events'
+                    to="/editar-perfil"
+                >
+                    <PencilIcon />
+                </NavLink>
             </div>
+                <span className="">{userAllergy.name}</span>
         </>
     )
 }
