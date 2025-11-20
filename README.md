@@ -1,16 +1,48 @@
-# React + Vite
+# ¿Puedo Consumir Este Alimento? (SPA)
+Esta es una Single Page Application informativa, en la que vos nos contás cuál es tu alergia, y nosotros te ayudamos a saber qué alimentos son aptos para vos, y cuáles no. 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 👨‍🎓 Alumnos
+- Corbalan Nicolas
+- Espassandin Gonzalo
+- Gamero Facundo
+- Gamero Gustavo
 
-Currently, two official plugins are available:
+## 📒 Temas
+- Registro
+- Inicio de Sesión
+- Listado de productos
+- Detalle de producto
+- Validación de compatibilidad (¿soy apto? ¿o no soy apto?)
+- Editar la alergia en tu perfil
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📎 Tecnologías
+- React
+- React Router (DATA mode)
+- TailwindCSS
+- JWT (Json Web Token)
 
-## React Compiler
+## 👨‍💻 Instalación
+1. Instalar, configurar y tener corriendo la API de forma local (https://github.com/gamerofacundo-dav/Parcial-1---Gameros-Espasandin---AH)
+2. Clonar el proyecto
+```bash
+  git clone https://github.com/corbalan-nicolas/react-ophi-front.git
+```
+3. Installar las dependencias
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+```bash
+  npm install
+```
 
-## Expanding the ESLint configuration
+4. Configurar las variables de entorno (usar como referencia .env.example)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+5. Iniciar el servidor
+
+```bash
+  npm run dev
+```
+
+## Más información
+- Carrera: Diseño y Programación Web
+- Materia: Aplicaciones Híbridas
+- Docente: Cruz Jonathan Emanuel
+- Comisión: DWN4AV
