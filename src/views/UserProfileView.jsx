@@ -9,7 +9,7 @@ const UserProfileView = () => {
 
     useEffect(() => {
         async function getAllergy () {
-            if (!user) {
+            if (!user.allergy) {
                 console.log('[UserProfileView.jsx getAllergy()] No user found')
                 return;
             }
