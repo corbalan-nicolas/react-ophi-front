@@ -6,8 +6,14 @@ import { getUserAllergy } from "../services/User";
 const UserProfileView = () => {
     const {user} = useContext(AuthContext);
     const [userAllergy, setUserAllergy] = useState('');
+
     useEffect(() => {
         async function getAllergy () {
+            if (!user) {
+                console.log('[UserProfileView.jsx getAllergy()] No user found')
+                return;
+            }
+
             try {
                 const result = await getUserAllergy(user.allergy);
                 console.log(result);
@@ -19,7 +25,7 @@ const UserProfileView = () => {
             }
         }
         getAllergy();
-    }, []);
+    }, [user]);
     return (
         <>
             <h1 className='text-6xl mb-6 text-center'>{user.name}</h1>

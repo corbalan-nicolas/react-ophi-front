@@ -6,11 +6,12 @@ const AuthContext = createContext();
 const STORAGE_TOKEN_KEY = 'ophi_token';
 
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({});
     const [token, setToken] = useState(localStorage.getItem('ophi_token'));
 
     // localStorage
     useEffect(() => {
+        console.log('Cargar el usuario')
         if (token) {
             
             try {
@@ -29,7 +30,7 @@ const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
-        setUser(null);
+        setUser({});
         setToken(null);
 
         localStorage.removeItem(STORAGE_TOKEN_KEY);

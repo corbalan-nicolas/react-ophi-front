@@ -19,8 +19,8 @@ export async function findByName(name) {
     return result.data;
 }
 
-export async function getAllSafeFood(allergen) {
-    const endPoint = apiUrl + `/food/allergen/${allergen}`;
+export async function getAllSafeFood(id) {
+    const endPoint = apiUrl + `/food/allergen/${id}`;
     const option = ManageFetch.configureFetch('get');
 
     const response = await fetch(endPoint, option);

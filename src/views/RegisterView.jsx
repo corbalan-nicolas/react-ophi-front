@@ -62,7 +62,7 @@ const RegisterView = () => {
             const result = await registerUser(formData)
             setStatus({ loading: false, error: null, success: result.msg })
 
-
+            navigate('/iniciar-sesion')
         } catch (error) {
             setStatus({ loading: false, error: error.message, success: null })
         }

@@ -28,7 +28,7 @@ const HomeView = () => {
 
      async function getFood() {
             try {
-                const result = await getAllSafeFood(userAllergy.name);
+                const result = await getAllSafeFood(user.allergy);
                 if(result) {
                     setFood(result);
                 }
@@ -41,6 +41,7 @@ const HomeView = () => {
     useEffect(() => {
         async function getAllergy () {
             try {
+                console.log({user})
                 const result = await getUserAllergy(user.allergy);
             
                 if(result) {
