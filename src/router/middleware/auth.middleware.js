@@ -1,5 +1,6 @@
 import { redirect } from 'react-router'
 import {userContext} from "../contexts/user.context.js";
+import {jwtDecode} from "jwt-decode";
 
 export async function authMiddleware({ context }) {
     const token = localStorage.getItem('ophi_token');
@@ -8,5 +9,6 @@ export async function authMiddleware({ context }) {
         throw redirect('/iniciar-sesion');
     }
 
-    context.set(userContext, { token });
+    const user = jwtDecode(token);
+    context.set(userContext, { user });
 }

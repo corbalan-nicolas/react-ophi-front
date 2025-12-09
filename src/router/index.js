@@ -6,7 +6,8 @@ import GuessLayout from "../layouts/GuessLayout.jsx";
 import MainLayout from "../layouts/MainLayout.jsx";
 
 // MIDDLEWARES
-import {authMiddleware} from './middleware/auth.middleware.js';
+import { authMiddleware } from './middleware/auth.middleware.js';
+import { adminMiddleware } from './middleware/admin.middleware.js'
 
 // VIEWS
 import HomeView from "../views/HomeView.jsx";
@@ -16,6 +17,11 @@ import NotFound from "../views/NotFound.jsx";
 import RegisterView from "../views/RegisterView.jsx"
 import UserProfileView from "../views/UserProfileView.jsx";
 import EditProfileView from "../views/EditProfileView.jsx";
+import DashboardLayout from "../layouts/DashboardLayout.jsx";
+import MainPanelView from "../views/dashboard/MainPanelView.jsx";
+import ProductsListView from "../views/dashboard/ProductsListView.jsx";
+import ProductsCreateView from "../views/dashboard/ProductsCreateView.jsx";
+import ProductsEditView from "../views/dashboard/ProductsEditView.jsx";
 
 const index = createBrowserRouter([
     {
@@ -55,6 +61,37 @@ const index = createBrowserRouter([
                 path: '/editar-perfil',
                 Component: EditProfileView,
             },
+        ]
+    },
+    {
+        Component: DashboardLayout,
+        middleware: [authMiddleware, adminMiddleware],
+        children: [
+            {
+                path: '/dashboard/home',
+                Component: MainPanelView,
+            },
+            {
+                path: '/dashboard/productos',
+                Component: ProductsListView
+            },
+            {
+                path: '/dashboard/productos/crear',
+                Component: ProductsCreateView
+            },
+            {
+                path:'/dashboard/productos/:id/editar',
+                loader: async ({params}) => {
+                    return {
+                        product: {
+                            name: 'TODO:',
+                            barcode: 'Obtener estos datos en el loader',
+                            ingredients: '(Archivo index.js, el que tiene las rutas)'
+                        }
+                    }
+                },
+                Component: ProductsEditView,
+            }
         ]
     }
 ])

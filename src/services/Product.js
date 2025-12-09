@@ -34,6 +34,31 @@ export async function getAllSafeFood(id) {
     return result.data;
 }
 
+export async function getAllProducts() {
+    const endPoint = apiUrl + `/food/`;
+    const option = ManageFetch.configureFetch('get');
+    const response = await fetch(endPoint, option);
+    const result = await response.json();
+
+    if(!response.ok) {
+        throw new Error(result.msg ?? 'Error al obtener los alimentos')
+    }
+
+    return result.data
+}
+
+export async function postNewFood(formData) {
+    const endPoint = apiUrl + '/food/'
+    const option = ManageFetch.configureFetch('post', formData)
+    const response = await fetch(endPoint, option)
+    const result = await response.json()
+
+    if(!response.ok) {
+        throw new Error(result.msg ?? 'Error al obtener los alimentos')
+    }
+
+    return result.data
+}
 
 // export async function getAllSafeFood(allergen) {
 //     const endPoint = apiUrl + `/food/ingredient/${allergen}`;

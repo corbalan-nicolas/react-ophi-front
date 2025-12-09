@@ -17,9 +17,10 @@ const AuthProvider = ({ children }) => {
             try {
                 const tokenDecoded = jwtDecode(token);
                 setUser(tokenDecoded);
+                console.log({tokenDecoded});
             } catch (error) {
                 console.error('Error al parsear usuario guardado', error);
-                setUser(null);
+                setUser({});
             }
         }
     }, [token]);

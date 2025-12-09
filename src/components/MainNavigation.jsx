@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 
 const MainNavigation = () => {
     const {user, logout} = useContext(AuthContext);
+    console.log('[MAIN NAVIGATION]', user.role)
     const navigate = useNavigate();
 
     const handleLogout = async () => {
@@ -32,9 +33,16 @@ const MainNavigation = () => {
                 </li>
                 <li>
                     <NavLink className={baseClasses} to="/perfil">
-                        {user.name}
+                        Perfil
                     </NavLink>
                 </li>
+                { user.role === 'admin' &&
+                    <li>
+                        <NavLink className={baseClasses} to="/dashboard/home">
+                            Dashboard
+                        </NavLink>
+                    </li>
+                }
                 <li>
                     <button
                         type="button"
