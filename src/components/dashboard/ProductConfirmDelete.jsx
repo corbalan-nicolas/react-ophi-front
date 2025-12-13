@@ -1,46 +1,59 @@
 import { useEffect, useRef } from "react";
 
-const ProductConfirmDelete = ({ modalProduct, isOpen, setIsOpen }) => {
-    const dialog = useRef(null)
+const ProductConfirmDelete = ({ modalProduct, isOpen, setIsOpen, onConfirm }) => {
+    const dialog = useRef(null);
 
     useEffect(() => {
-        if (isOpen) {
-            dialog.current.showModal()
-        } else {
-            dialog.current.close()
-        }
-    }, [isOpen])
+        if (!dialog.current) return;
 
-    function handleConfirm() {
+        if (isOpen) {
+            dialog.current.showModal();
+        } else {
+            dialog.current.close();
+        }
+    }, [isOpen]);
+
+    function handleCancel() {
+        setIsOpen(false);
+    }
+
+    async function handleConfirm() {
         try {
-            // TODO: Fetch to delete
+            await onConfirm();
         } catch (error) {
-            console.log('[ProductConfirmDelete] Unknown error', {error})
+            console.log('[ProductConfirmDelete] Unknown error', { error });
         }
     }
 
+    if (!modalProduct) return null;
+
     return (
-        <dialog ref={dialog} onClose={() => setIsOpen(false)} className='m-auto glass border p-4'>
+        <dialog
+            ref={dialog}
+            onClose={handleCancel}
+            className='m-auto glass border p-4'
+        >
             <p>¿Estás seguro de que quieres eliminar este producto?</p>
 
-            <p>{modalProduct.name}</p>
+            <p className="font-semibold mb-2">{modalProduct.name}</p>
 
             <button
-                className='py-1 px-3 border'
+                className='py-1 px-3 border mr-2'
                 type='button'
-                onClick={() => dialog.current.close()}
+                onClick={handleCancel}
             >
                 Cancelar
             </button>
 
             <button
                 className='py-1 px-3 border'
+                type='button'
                 onClick={handleConfirm}
             >
                 Eliminar
             </button>
         </dialog>
-    )
-}
+    );
+};
 
-export default ProductConfirmDelete
+export default ProductConfirmDelete;

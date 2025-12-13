@@ -35,7 +35,7 @@ const ProductForm = ({handleSubmit, initialState = {}}) => {
         setLoading(true)
         setError('')
 
-        const doesntHaveAllRequiredValues = !formData.name || !formData.barcode || !formData.ingredients || !formData.traces || !formData.brand || !formData.category || !formData.origin || !formData.calories || !formData.fats || !formData.sugar || !formData.protein
+        const doesntHaveAllRequiredValues = !formData.name || !formData.barcode || !formData.ingredients || !formData.traces || !formData.brand || !formData.category || !formData.origin
 
         if (doesntHaveAllRequiredValues) {
             setLoading(false)

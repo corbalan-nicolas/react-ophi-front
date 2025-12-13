@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from 'react-router/dom';
+import { getProductById } from "../services/Product.js"
 
 // LAYOUTS
 import GuessLayout from "../layouts/GuessLayout.jsx";
@@ -82,14 +83,15 @@ const index = createBrowserRouter([
             {
                 path:'/dashboard/productos/:id/editar',
                 loader: async ({params}) => {
-                    return {
-                        product: {
-                            name: 'TODO:',
-                            barcode: 'Obtener estos datos en el loader',
-                            ingredients: '(Archivo index.js, el que tiene las rutas)'
+                    try {
+                        // params.id viene de la URL /dashboard/productos/:id/editar
+                        const product = await getProductById(params.id);
+                        return { product };
+                        } catch (error) {
+                        console.error("[loader productos editar] Error cargando producto", error);
+                        throw new Response("No se pudo cargar el producto", { status: 500 });
                         }
-                    }
-                },
+                    },
                 Component: ProductsEditView,
             }
         ]

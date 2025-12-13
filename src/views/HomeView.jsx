@@ -27,19 +27,27 @@ const HomeView = () => {
     }
 
      async function getFood() {
-            try {
-                const result = await getAllSafeFood(user.allergy);
-                if(result) {
-                    setFood(result);
-                }
-            } catch (error) {   
-                console.error('No se pudo obtener los alimentos SEGUROS', error);
+        if (!user || !user.allergy) {
+            console.log('probando si el usuario o la alergia no está cargando a tiempo', user); //limpiar para la entrega
+            return;
+        }
+        try {
+            const result = await getAllSafeFood(user.allergy);
+            if(result) {
+                setFood(result);
             }
+        } catch (error) {   
+            console.error('No se pudo obtener los alimentos SEGUROS', error);
+        }
     }
 
 
     useEffect(() => {
         async function getAllergy () {
+            if (!user || !user.allergy) {
+                console.log('probando si el usuario o la alergia no está cargando a tiempo', user); //limpiar para la entrega
+                return;
+            }
             try {
                 console.log({user})
                 const result = await getUserAllergy(user.allergy);
@@ -52,14 +60,16 @@ const HomeView = () => {
             }
         }
         getAllergy();
-    }, []);
+    }, [user]);
 
 
-    useEffect(() => { 
-        if(userAllergy !== null) {
-            getFood();
-        }
-    }, [userAllergy])
+    useEffect(() => {
+
+        if (!user || !user.allergy) return;
+        if (userAllergy === null) return;
+
+        getFood();
+    }, [userAllergy, user]);
 
     function getResult(result) {
         if(result !== null) {
