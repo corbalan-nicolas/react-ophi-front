@@ -99,18 +99,3 @@ export async function deleteFood(id) {
     return result.data;
 }
 
-
-// export async function getAllSafeFood(allergen) {
-//     const endPoint = apiUrl + `/food/ingredient/${allergen}`;
-//     const option = ManageFetch.configureFetch('get');
-
-//     const response = await fetch(endPoint, option);
-//     const result = await response.json();
-
-//     console.log(result);
-//     if(!response.ok) {
-//         throw new Error(result.msg ?? 'Error al buscar alimentos')
-//     }
-
-//     return result.data;
-// }

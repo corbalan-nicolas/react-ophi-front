@@ -23,6 +23,12 @@ import MainPanelView from "../views/dashboard/MainPanelView.jsx";
 import ProductsListView from "../views/dashboard/ProductsListView.jsx";
 import ProductsCreateView from "../views/dashboard/ProductsCreateView.jsx";
 import ProductsEditView from "../views/dashboard/ProductsEditView.jsx";
+import usersListView from "../views/dashboard/users/UsersListView.jsx";
+import UsersListView from "../views/dashboard/users/UsersListView.jsx";
+import UserInfoView from "../views/dashboard/users/UserInfoView.jsx";
+import { getUser } from "../services/User.js";
+import UserEditView from "../views/dashboard/users/UsersEditView.jsx";
+import UserCreateView from "../views/dashboard/users/UserCreateView.jsx";
 
 const index = createBrowserRouter([
     {
@@ -93,7 +99,41 @@ const index = createBrowserRouter([
                         }
                     },
                 Component: ProductsEditView,
-            }
+            },
+            {
+                path: '/dashboard/usuarios',
+                Component: UsersListView
+            },
+            {
+                path: '/dashboard/usuarios/:id/informacion',
+                loader: async ({params}) => {
+                    try {
+                        const user = await getUser(params.id);
+                        return { user };
+                        } catch (error) {
+                        console.error("[loader usuarios informacion] Error trayendo usuario", error);
+                        throw new Response("No se pudo obtener al usuario", { status: 500 });
+                    }
+                },
+                Component: UserInfoView
+            },
+            {
+                path: '/dashboard/usuarios/:id/editar',
+                loader: async ({params}) => {
+                    try {
+                        const user = await getUser(params.id);
+                        return { user };
+                        } catch (error) {
+                        console.error("[loader usuarios informacion] Error trayendo usuario", error);
+                        throw new Response("No se pudo obtener al usuario", { status: 500 });
+                    }
+                },
+                Component: UserEditView
+            },
+            {
+                path: '/dashboard/usuarios/crear',
+                Component: UserCreateView
+            },
         ]
     }
 ])
