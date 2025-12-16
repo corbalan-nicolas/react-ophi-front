@@ -11,8 +11,11 @@ const ProductCard = ({product, setModalProduct, setIsOpen}) => {
 
     return (
         <article className="grid grid-rows-3 grid-cols-[1fr_auto] gap-4">
-            <div className="col-span-1 row-span-full border glass rounded-lg">
-                <h2>{product.name}</h2>
+            <div className="col-span-1 row-span-full border glass rounded-lg p-2">
+                <h2 className='text-2xl'>{product.name}</h2>
+                <p className='text-sm text-black/50 hover:text-black transition'
+                >{product.brand} · {product.category} · {product.barcode}
+                </p>
             </div>
 
             <Link
@@ -32,7 +35,6 @@ const ProductCard = ({product, setModalProduct, setIsOpen}) => {
                 onClick={handleDelete}
                 title='Eliminar producto'
             ><TrashIcon /></button>
-
         </article>
     )
 }

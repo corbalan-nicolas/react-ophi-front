@@ -13,7 +13,7 @@ const UserCard = ({userL, setModalUser, setIsOpen}) => {
     }
 
     return (
-        <article className="grid grid-rows-3 grid-cols-[1fr_auto] gap-4">
+        <article className="grid grid-cols-[1fr_auto_auto_auto] gap-4">
             <div className="col-span-1 row-span-full border glass rounded-lg">
                 <h2>{userL.name}</h2>
             </div>

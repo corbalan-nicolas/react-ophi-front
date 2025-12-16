@@ -32,7 +32,7 @@ const UsersList = ({ users, setUsers }) => {
 
     return (
         <>
-            <ul className='grid gap-4 grid-cols-2'>
+            <ul className='grid gap-4'>
                 {users.map((user) => (
                     <li key={user._id}>
                         <UserCard

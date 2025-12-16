@@ -1,5 +1,7 @@
 import { NavLink } from "react-router"
 import ProductIcon from "../../components/icons/ProductIcon"
+import UserIcon from "../../components/icons/UserIcon.jsx";
+import ArrowLeftIcon from "../../components/icons/ArrowLeftIcon.jsx";
 
 const MainPanelView = () => {
     return (
@@ -8,13 +10,16 @@ const MainPanelView = () => {
 
             <h2 className="text-4xl mb-6">¿Que deseás administrar?</h2>
             
-            <div className="flex gap-4 text-white">
-                <NavLink className=" bg-amber-950 w-80 h-80 border-2 rounded-2xl p-5 text-2xl" to="/dashboard/productos">
-                    <h3>Productos</h3>
+            <div className="grid gap-4 grid-cols-2">
+                <NavLink className=" border glass rounded-lg glass--events px-3 py-2 flex gap-2 items-center text-2xl" to="/dashboard/productos">
                     <ProductIcon/>
+                    <h3 className='grow'>Productos</h3>
+                    <ArrowLeftIcon className='rotate-180' />
                 </NavLink>
-                <NavLink className="bg-amber-950 w-80 h-80 border-2 rounded-2xl p-5 text-2xl" to="/dashboard/usuarios">
-                    <h3>Usuarios</h3>
+                <NavLink className="border glass rounded-lg glass--events px-3 py-2 flex gap-2 items-center text-2xl" to="/dashboard/usuarios">
+                    <UserIcon />
+                    <h3 className='grow'>Usuarios</h3>
+                    <ArrowLeftIcon className='rotate-180' />
                 </NavLink>
             </div>
         </>
