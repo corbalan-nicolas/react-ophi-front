@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import HomeIcon from "./icons/HomeIcon.jsx";
 import UserIcon from "./icons/UserIcon.jsx";
