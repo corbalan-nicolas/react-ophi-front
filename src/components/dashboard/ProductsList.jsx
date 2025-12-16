@@ -31,7 +31,7 @@ const ProductsList = ({ products, setProducts }) => {
 
     return (
         <>
-            <ul className='grid gap-4 grid-cols-2'>
+            <ul className='grid gap-4 md:grid-cols-2'>
                 {products.map((product) => (
                     <li key={product._id}>
                         <ProductCard

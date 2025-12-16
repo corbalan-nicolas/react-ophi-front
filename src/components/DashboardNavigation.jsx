@@ -8,7 +8,7 @@ const navLinkClassName = 'block py-2 px-4 rounded-lg bg-white/20 hover:bg-white/
 
 const DashboardNavigation = () => (
     <nav className='p-4'>
-        <ul>
+        <ul className=''>
             <li>
                 <NavLink className={navLinkClassName} to="/dashboard/home">
                     <HomeIcon />
@@ -19,6 +19,12 @@ const DashboardNavigation = () => (
                 <NavLink className={navLinkClassName} to="/dashboard/productos">
                     <ProductIcon />
                     Productos
+                </NavLink>
+            </li>
+            <li className='mb-full'>
+                <NavLink className={navLinkClassName} to="/dashboard/usuarios">
+                    <UserIcon />
+                    Usuarios
                 </NavLink>
             </li>
             <li>
