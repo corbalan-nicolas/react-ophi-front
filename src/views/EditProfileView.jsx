@@ -60,7 +60,7 @@ const EditProfileView = () => {
                     <select
                         id="newAllergy"
                         name="newAllergy"
-                        className='block w-full border-white/30 border-1 bg-black/20 focus-visible:bg-black/30 text-white/80 rounded-lg py-2 px-3'
+                        className='block w-full border-white/30 border bg-black/20 focus-visible:bg-black/30 text-white/80 rounded-lg py-2 px-3'
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                     >

@@ -60,6 +60,7 @@ const ProductsSection = () => {
                     product={modalProduct}
                     onCancel={handleCancelDelete}
                     onConfirm={handleConfirmDelete}
+                    entityLabel="producto"
                 />
             )}
 

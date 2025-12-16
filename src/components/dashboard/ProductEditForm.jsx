@@ -34,6 +34,7 @@ const ProductEditForm = () => {
         <ProductForm
             handleSubmit={handleSubmit}
             initialState={initialState}
+            submitLabel="Guardar cambios"
         />
     );
 };

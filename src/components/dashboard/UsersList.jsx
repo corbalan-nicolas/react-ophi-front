@@ -49,6 +49,7 @@ const UsersList = ({ users, setUsers }) => {
                 setIsOpen={setIsOpen}
                 modalProduct={modalUser}
                 onConfirm={handleConfirmDelete}
+                entityLabel="usuario"
             />
         </>
     );

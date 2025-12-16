@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const ProductConfirmDelete = ({ modalProduct, isOpen, setIsOpen, onConfirm }) => {
+const ProductConfirmDelete = ({ modalProduct, isOpen, setIsOpen, onConfirm, entityLabel = "producto" }) => {
     const dialog = useRef(null);
 
     useEffect(() => {
@@ -33,12 +33,12 @@ const ProductConfirmDelete = ({ modalProduct, isOpen, setIsOpen, onConfirm }) =>
             onClose={handleCancel}
             className='m-auto glass border p-4'
         >
-            <p>¿Estás seguro de que quieres eliminar este producto?</p>
+            <p>¿Estás seguro de que quieres eliminar este {entityLabel}?</p>
 
             <p className="font-semibold mb-2">{modalProduct.name}</p>
 
             <button
-                className='py-1 px-3 border mr-2'
+                className='py-1 px-3 border mr-2 rounded-md cursor-pointer transition-colors duration-200  hover:bg-zinc-700 hover:text-white'
                 type='button'
                 onClick={handleCancel}
             >
@@ -46,7 +46,7 @@ const ProductConfirmDelete = ({ modalProduct, isOpen, setIsOpen, onConfirm }) =>
             </button>
 
             <button
-                className='py-1 px-3 border'
+                className='py-1 px-3 border mr-2 rounded-md cursor-pointer transition-colors duration-200  hover:bg-zinc-700 hover:text-white'
                 type='button'
                 onClick={handleConfirm}
             >
