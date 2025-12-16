@@ -28,12 +28,6 @@ const DashboardNavigation = () => (
                 </NavLink>
             </li>
             <li>
-                <NavLink className={navLinkClassName} to="/dashboard/usuarios">
-                    <UserIcon />
-                    Usuarios
-                </NavLink>
-            </li>
-            <li>
                 <NavLink className={navLinkClassName} to="/">
                     <ArrowLeftIcon />
                     Salir
