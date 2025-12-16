@@ -11,6 +11,9 @@ const UserInfo = ({user, allergy}) => {
                 <h2>Email: {user.email}</h2>
             </div>
             <div className="col-span-1 row-span-full border glass rounded-lg">
+                <h2>Rol: {user.role}</h2>
+            </div>
+            <div className="col-span-1 row-span-full border glass rounded-lg">
                 <h2>Alergia: {allergy.name}</h2>
             </div>
             <div className="col-span-1 row-span-full border glass rounded-lg">
