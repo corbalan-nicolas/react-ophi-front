@@ -19,7 +19,7 @@ const DashboardNavigationMobile = ({isOpen, setIsOpen}) => {
                         >
                             <CloseIcon />
                         </button>
-                        <DashboardNavigation />
+                        <DashboardNavigation handleClick={() => setIsOpen(false)} />
                     </div>
                 </div>
             }
