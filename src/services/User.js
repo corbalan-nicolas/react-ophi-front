@@ -75,6 +75,7 @@ export async function getUser(id) {
 }
 
 export async function updateUser(id, data) {
+    console.log(data);
     const endPoint = apiUrl + `/users/${id}`; 
     const option = ManageFetch.configureFetch("put", data);
 
