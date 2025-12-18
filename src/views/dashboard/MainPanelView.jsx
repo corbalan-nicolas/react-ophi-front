@@ -1,6 +1,7 @@
 import { NavLink } from "react-router"
 import ProductIcon from "../../components/icons/ProductIcon"
 import UserIcon from "../../components/icons/UserIcon"
+import DangerIcon from "../../components/icons/DangerIcon"
 
 const MainPanelView = () => {
     return (
@@ -33,6 +34,19 @@ const MainPanelView = () => {
 
                     <p className="mt-auto text-sm text-white/80">
                         Administrá cuentas y alergias.
+                    </p>
+                </NavLink>
+
+                <NavLink to="/dashboard/intolerancias" className="bg-amber-950 border-2 border-gray-600 rounded-2xl p-5 text-2xl flex flex-col transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-xl hover:bg-amber-900 hover:border-white">
+                    <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-2xl font-semibold text-right">
+                            Intolerancias
+                        </h3>
+                        <DangerIcon className="w-10 h-10" />
+                    </div>
+
+                    <p className="mt-auto text-sm text-white/80">
+                        Administrá las intolerancias.
                     </p>
                 </NavLink>
             </div>

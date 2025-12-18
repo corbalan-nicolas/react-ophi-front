@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from 'react-router/dom';
 import { getProductById } from "../services/Product.js"
+import { getIntoleranceById } from "../services/Intolerances.js"
 
 // LAYOUTS
 import GuessLayout from "../layouts/GuessLayout.jsx";
@@ -14,6 +15,7 @@ import { adminMiddleware } from './middleware/admin.middleware.js'
 import HomeView from "../views/HomeView.jsx";
 import LoginView from "../views/LoginView.jsx";
 import ProductView from "../views/ProductView.jsx";
+import IntoleranceView from "../views/IntoleranceView.jsx";
 import NotFound from "../views/NotFound.jsx";
 import RegisterView from "../views/RegisterView.jsx"
 import UserProfileView from "../views/UserProfileView.jsx";
@@ -29,6 +31,9 @@ import UserInfoView from "../views/dashboard/users/UserInfoView.jsx";
 import { getUser } from "../services/User.js";
 import UserEditView from "../views/dashboard/users/UsersEditView.jsx";
 import UserCreateView from "../views/dashboard/users/UserCreateView.jsx";
+import IntolerancesListView from "../views/dashboard/IntolerancesListView.jsx";
+import IntolerancesCreateView from "../views/dashboard/IntolerancesCreateView.jsx";
+import IntolerancesEditView from "../views/dashboard/IntolerancesEditView.jsx";
 
 const index = createBrowserRouter([
     {
@@ -55,6 +60,10 @@ const index = createBrowserRouter([
             {
                 path: '/producto/:name',
                 Component: ProductView,
+            },
+            {
+                path: '/intolerancia/:id',
+                Component: IntoleranceView,
             },
             {
                 path: '/not-found',
@@ -133,6 +142,27 @@ const index = createBrowserRouter([
             {
                 path: '/dashboard/usuarios/crear',
                 Component: UserCreateView
+            },
+            {
+                path: '/dashboard/intolerancias',
+                Component: IntolerancesListView
+            },
+            {
+                path: '/dashboard/intolerancias/crear',
+                Component: IntolerancesCreateView
+            },
+            {
+                path: '/dashboard/intolerancias/:id/editar',
+                loader: async ({params}) => {
+                    try {
+                        const intolerance = await getIntoleranceById(params.id);
+                        return { intolerance };
+                    } catch (error) {
+                        console.error("[loader intolerancias editar] Error cargando intolerancia", error);
+                        throw new Response("No se pudo cargar la intolerancia", { status: 500 });
+                    }
+                },
+                Component: IntolerancesEditView
             },
         ]
     }

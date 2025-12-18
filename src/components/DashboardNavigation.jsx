@@ -5,6 +5,7 @@ import ProductIcon from "./icons/ProductIcon.jsx";
 import ArrowLeftIcon from "./icons/ArrowLeftIcon.jsx";
 import UserIcon from "./icons/UserIcon.jsx";
 import LogoutIcon from "./icons/LogoutIcon.jsx";
+import DangerIcon from "./icons/DangerIcon.jsx";
 import {useContext} from "react";
 
 const navLinkClassName = 'block py-2 px-4 rounded-lg bg-white/20 hover:bg-white/40 [.active]:bg-black/60 [.active]:hover:bg-black/50 [.active]:active:bg-black/70 [.active]:text-white/80 active:bg-white/30 transition flex items-center gap-4 mb-2'
@@ -40,6 +41,12 @@ const DashboardNavigation = ({handleClick = () => null}) => {
                     <NavLink className={navLinkClassName} to="/dashboard/productos" onClick={handleClick}>
                         <ProductIcon/>
                         Productos
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink className={navLinkClassName} to="/dashboard/intolerancias" onClick={handleClick}>
+                        <DangerIcon/>
+                        Intolerancias
                     </NavLink>
                 </li>
                 <li>
