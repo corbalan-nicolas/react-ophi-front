@@ -44,6 +44,12 @@ const ProductForm = ({handleSubmit, initialState = {}, submitLabel = "Añadir pr
             return
         }
 
+        if (formData.barcode.length !== 13) {
+            setLoading(false)
+            setError('El código de barras debe tener exactamente 13 dígitos')
+            return
+        }
+
         try {
             console.log('[validate()] Execute handleSubmit', formData)
             await handleSubmit({
@@ -51,8 +57,8 @@ const ProductForm = ({handleSubmit, initialState = {}, submitLabel = "Añadir pr
                 // TODO: Información nutricional (no sé si necesita llegar como un objeto o qué, pero no creo que sea como lo tenemos en el formData) --> R: Viajan dentro del formData
             })
         } catch (error) {
-            setError('¡Ups! Error desconocido. Por favor inténtelo más tarde')
-            console.log('[ProductForm] Unknown error', {error})
+            setError(error.message || '¡Ups! Error desconocido. Por favor inténtelo más tarde')
+            console.log('[ProductForm] Error:', {error})
         }
 
         setLoading(false)
