@@ -4,10 +4,13 @@ import InlineLoader from "../loaders/InlineLoader.jsx";
 import ProductsList from "./ProductsList.jsx";
 import {Link} from "react-router";
 import PlusIcon from "../icons/PlusIcon.jsx";
+import ProductConfirmDelete from "./ProductConfirmDelete.jsx";
 
 const ProductsSection = () => {
     const [loading, setLoading] = useState(false);
     const [products, setProducts] = useState([])
+    const [isOpen, setIsOpen] = useState(false);
+    const [modalProduct, setModalProduct] = useState(null);
 
     useEffect(() => {
         async function getProducts() {
@@ -26,6 +29,19 @@ const ProductsSection = () => {
         getProducts();
     }, [])
 
+    async function handleConfirmDelete() {
+        if (!modalProduct) return;
+
+        try {
+            await deleteFood(modalProduct._id);
+            setProducts(prev => prev.filter(p => p._id !== modalProduct._id));
+            setIsOpen(false);
+            setModalProduct(null);
+        } catch (error) {
+            console.error('[ProductsSection handleConfirmDelete] Error borrando producto', error);
+        }
+    }
+
     return (
         <>
             <div className='flex justify-end mb-4'>
@@ -38,9 +54,19 @@ const ProductsSection = () => {
                 </Link>
             </div>
 
-            { loading ? <InlineLoader /> : <ProductsList products={products} /> }
+            {/* Modal de confirmación de borrado */}
+            {isOpen && modalProduct && (
+                <ProductConfirmDelete
+                    product={modalProduct}
+                    onCancel={handleCancelDelete}
+                    onConfirm={handleConfirmDelete}
+                    entityLabel="producto"
+                />
+            )}
+
+            { loading ? <InlineLoader /> : <ProductsList products={products} setProducts={setProducts} /> }
         </>
-    )
-}
+    );
+};
 
 export default ProductsSection;

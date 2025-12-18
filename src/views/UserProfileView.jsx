@@ -1,12 +1,27 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { NavLink } from "react-router";
+import {NavLink, useNavigate} from "react-router";
 import { getUserAllergy } from "../services/User";
 import PencilIcon from "../components/icons/PencilIcon.jsx";
 
 const UserProfileView = () => {
-    const {user} = useContext(AuthContext);
+    const {user, logout} = useContext(AuthContext);
     const [userAllergy, setUserAllergy] = useState('');
+    const navigate = useNavigate();
+
+    const handleLogout = async () => {
+        try {
+            // Intentamos cerrar sesión en el back
+            // await logoutUser();
+        } catch (err) {
+            console.error("Error cerrando sesión en el back:", err);
+            // acá podrías mostrar un toast/alert si querés
+        } finally {
+            // Siempre limpiamos el estado del front
+            logout();
+            navigate("/iniciar-sesion");
+        }
+    };
 
     useEffect(() => {
         async function getAllergy () {
@@ -40,6 +55,12 @@ const UserProfileView = () => {
                 </NavLink>
             </div>
                 <span className="">{userAllergy.name}</span>
+
+            <button
+                type="button"
+                onClick={handleLogout}
+                className='block w-full mt-12 text-black/60 p-2 glass glass--events'
+            >Cerrar sesión</button>
         </>
     )
 }
