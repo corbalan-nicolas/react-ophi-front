@@ -32,7 +32,7 @@ const UserCard = ({ userL, setModalUser, setIsOpen }) => {
 
             <Link
                 to={`/dashboard/usuarios/${userL._id}/informacion`}
-                className="text-black/60 p-2 glass glass--events"
+                className="text-black/60 p-2 glass glass--events content-center"
                 title="Ver detalle"
             >
                 <EyeIcon />
@@ -40,7 +40,7 @@ const UserCard = ({ userL, setModalUser, setIsOpen }) => {
 
             <Link
                 to={`/dashboard/usuarios/${userL._id}/editar`}
-                className="text-black/60 p-2 glass glass--events"
+                className="text-black/60 p-2 glass glass--events content-center"
                 title="Editar Usuario"
             >
                 <PencilIcon />
@@ -48,7 +48,7 @@ const UserCard = ({ userL, setModalUser, setIsOpen }) => {
 
             {user?.id !== userL._id && (
                 <button
-                    className="text-black/60 p-2 glass glass--events"
+                    className="text-black/60 p-2 glass glass--events content-center"
                     onClick={handleDelete}
                     title="Eliminar Usuario"
                 >

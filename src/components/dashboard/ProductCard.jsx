@@ -34,7 +34,7 @@ const ProductCard = ({ product, setModalProduct, setIsOpen }) => {
 
             <Link
                 to={`/producto/${product.normalizedName}`}
-                className="text-black/60 p-2 glass glass--events"
+                className="text-black/60 p-2 glass glass--events content-center"
                 title="Ver detalle"
             >
                 <EyeIcon />
@@ -42,14 +42,14 @@ const ProductCard = ({ product, setModalProduct, setIsOpen }) => {
 
             <Link
                 to={`/dashboard/productos/${product._id}/editar`}
-                className="text-black/60 p-2 glass glass--events"
+                className="text-black/60 p-2 glass glass--events content-center"
                 title="Editar producto"
             >
                 <PencilIcon />
             </Link>
 
             <button
-                className="text-black/60 p-2 glass glass--events"
+                className="text-black/60 p-2 glass glass--events content-center"
                 onClick={handleDelete}
                 title="Eliminar producto"
             >

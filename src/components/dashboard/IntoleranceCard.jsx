@@ -49,7 +49,7 @@ const IntoleranceCard = ({ intolerance, setModalIntolerance, setIsOpen }) => {
 
             <Link
                 to={`/intolerancia/${intolerance._id}`}
-                className="text-black/60 p-2 glass glass--events"
+                className="text-black/60 p-2 glass glass--events content-center"
                 title="Ver detalle"
             >
                 <EyeIcon />
@@ -57,14 +57,14 @@ const IntoleranceCard = ({ intolerance, setModalIntolerance, setIsOpen }) => {
 
             <Link
                 to={`/dashboard/intolerancias/${intolerance._id}/editar`}
-                className="text-black/60 p-2 glass glass--events"
+                className="text-black/60 p-2 glass glass--events content-center"
                 title="Editar intolerancia"
             >
                 <PencilIcon />
             </Link>
 
             <button
-                className="text-black/60 p-2 glass glass--events"
+                className="text-black/60 p-2 glass glass--events content-center"
                 onClick={handleDelete}
                 title="Eliminar intolerancia"
             >
